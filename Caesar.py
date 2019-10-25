@@ -7,25 +7,27 @@ lower_case = "abcdefghijklmnopqrstuvwxyz"
 key = int(input("Letters shift: "))
 letter_number = 0
 total = ""
-is_capital = True
+is_capital = 1
 
 def function(letter_number, key, is_capital, letter):
-    if letter == " ":
-        return(" ")
     ciphertext = ((letter_number + key) % 26) - 1
-    if is_capital == True:
+    if is_capital == 1:
         return upper_case[ciphertext]
-    else:
+    elif is_capital == 0:
         return lower_case[ciphertext]
+    else:
+        return(letter)
 for x in range(len(plaintext)):
     letter = plaintext[0]
     for i in range(26):
         if  letter == upper_case[i]:
             letter_number = i + 1
-            is_capital = True
+            is_capital = 1
         elif letter == lower_case[i]:
             letter_number = i + 1
-            is_capital = False
+            is_capital = 0
+        else:
+            is_capital = 2
     plaintext = plaintext[1:]
     total = total + function(letter_number, key, is_capital, letter)
 print(total)
